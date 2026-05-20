@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+{
+    Schema::table('reseps', function (Blueprint $table) {
+        $table->text('obat_dipilih')->nullable()->after('penebusan_obat');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('reseps', function (Blueprint $table) {
+        $table->dropColumn('obat_dipilih');
+    });
+}
+};
