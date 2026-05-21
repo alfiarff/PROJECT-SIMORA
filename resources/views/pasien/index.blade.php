@@ -167,28 +167,7 @@
         .actions{ width: 100%; flex-direction: column; }
         .search-box{ width: 100%; }
     }
-    
-    .btn-back-dashboard {
-        display: inline-flex;
-        align-items: center;
-        padding: 10px 18px;
-        background-color: transparent;
-        color: #75162d;
-        border: 2px solid #75162d;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        transition: 0.3s;
-        margin-bottom: 20px;
-        font-family: inherit !important;
-    }
 
-    .btn-back-dashboard:hover {
-        background-color: #75162d;
-        color: #fff;
-        text-decoration: none;
-    }
 /* Pagination */
 .pagination-wrapper{
     display:flex;
@@ -223,9 +202,6 @@
 
 </style>
 
-<a href="/dashboard-pmik" class="btn-back-dashboard">
-    ← Kembali ke Dashboard
-</a>
 <div class="container-pasien">
     <div class="card-pasien">
 
@@ -241,7 +217,7 @@
             Data Pasien
         </h2>
 
-        <p style="margin:0; color:#000; font-size:14px; font-weight:400;">
+        <p style="margin:0; color:#777; font-size:14px; font-weight:400;">
             Kelola dan tambahkan data pasien berdasarkan identitas dan informasi pasien.
         </p>
     </div>

@@ -7,7 +7,8 @@
         background: #fff;
         border-radius: 12px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        margin: 20px;
+        margin: auto;
+        width: 100%;
     }
 
     .header-pasien {
@@ -54,26 +55,26 @@
     }
 
     .table-pasien tbody tr:hover {
-    background: #5a1122;
-}
+        background: #5a1122;
+    }
 
-.table-pasien tbody tr {
-    transition: all 0.2s ease;
-}
+    .table-pasien tbody tr {
+        transition: all 0.2s ease;
+    }
 
-.table-pasien tbody tr:hover {
-    background: #5a1122;
-}
+    .table-pasien tbody tr:hover {
+        background: #5a1122;
+    }
 
-/* teks jadi putih saat hover */
-.table-pasien tbody tr:hover td {
-    color: #fff;
-}
+    /* teks jadi putih saat hover */
+    .table-pasien tbody tr:hover td {
+        color: #fff;
+    }
 
-/* biar tombol tetap jelas */
-.table-pasien tbody tr:hover .btn {
-    color: #fff;
-}
+    /* biar tombol tetap jelas */
+    .table-pasien tbody tr:hover .btn {
+        color: #fff;
+    }
 
     /* --- PERBAIKAN CSS BUTTON (AKSI) --- */
     .btn {
@@ -102,10 +103,10 @@
         box-shadow:none !important;
     }
 
-.table-pasien tbody tr:hover .btn-lihat{
-    background:#5b9bd5 !important;
-    color:#fff !important;
-}
+    .table-pasien tbody tr:hover .btn-lihat{
+        background:#5b9bd5 !important;
+        color:#fff !important;
+    }
 
     /* Tombol Tambah Resep (Hijau) */
     .btn-resep { 
@@ -116,7 +117,6 @@
         transform: translateY(-2px); /* Efek terangkat */
         box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4); /* Bayangan hijau */
     }
-    /* ----------------------------------- */
 
     /* Modal */
     .modal-overlay {
@@ -192,50 +192,50 @@
 
 /* ================= PAGINATION CUSTOM ================= */
 
-.custom-pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-}
+    .custom-pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
 
-.custom-pagination .pagination {
-    gap: 12px;
-}
+    .custom-pagination .pagination {
+        gap: 12px;
+    }
 
-.custom-pagination .page-item .page-link {
-    padding: 10px 18px;
-    background: #75162d;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: .3s ease;
-    box-shadow: none;
-}
+    .custom-pagination .page-item .page-link {
+        padding: 10px 18px;
+        background: #75162d;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: .3s ease;
+        box-shadow: none;
+    }
 
-.custom-pagination .page-item .page-link:hover {
-    background: #5a1122;
-    color: #fff;
-    transform: translateY(-1px);
-}
+    .custom-pagination .page-item .page-link:hover {
+        background: #5a1122;
+        color: #fff;
+        transform: translateY(-1px);
+    }
 
-.custom-pagination .page-item.active .page-link {
-    background: #5a1122;
-    color: #fff;
-    border: none;
-}
+    .custom-pagination .page-item.active .page-link {
+        background: #5a1122;
+        color: #fff;
+        border: none;
+    }
 
-.custom-pagination .page-item.disabled .page-link {
-    background: #d1d5db;
-    color: #6b7280;
-    border: none;
-    cursor: not-allowed;
-}
+    .custom-pagination .page-item.disabled .page-link {
+        background: #d1d5db;
+        color: #6b7280;
+        border: none;
+        cursor: not-allowed;
+    }
 
-.custom-pagination .page-link:focus {
-    box-shadow: none;
-}
+    .custom-pagination .page-link:focus {
+        box-shadow: none;
+    }
 </style>
 
 <div class="container-pasien">
@@ -245,7 +245,7 @@
             Data Pasien
         </h2>
 
-        <p style="margin:0; color:#000; font-size:14px; font-weight:400;">
+        <p style="margin:0; color:#777; font-size:14px; font-weight:400;">
             Lihat data pasien dan lakukan proses peresepan obat sesuai kebutuhan pelayanan.
         </p>
     </div>

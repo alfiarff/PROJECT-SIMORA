@@ -6,7 +6,7 @@
 <style>
     /* 1. VARIABEL WARNA DAN FONT MENGIKUTI TEMA SI-MORA */
     :root {
-        --primary: #75162d; /* Disesuaikan dengan warna utama form Anda */
+        --primary: #75162d; 
         --blue: #3498db;
         --orange: #f39c12;
         --red: #e74c3c;
@@ -162,35 +162,6 @@
         color: #444;
     }
 
-    /* Tombol Kembali ke Dashboard */
-    /* Tombol Kembali ke Dashboard */
-    .btn-back-dashboard {
-        display: inline-flex;
-        align-items: center;
-        padding: 10px 18px;
-        background-color: transparent;
-        color: var(--primary);
-        border: 2px solid var(--primary);
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        transition: 0.3s;
-        
-        /* Tambahan jarak agar tidak berdempetan dengan sidebar dan atas */
-        margin-left: 25px; 
-        margin-top: 10px;
-        margin-bottom: 20px;
-        
-        font-family: inherit !important;
-    }
-
-    .btn-back-dashboard:hover {
-        background-color: var(--primary);
-        color: #fff;
-        text-decoration: none;
-    }
-
     @media(max-width:768px) {
         .header-resep { flex-direction: column; align-items: flex-start; }
         .actions { width: 100%; flex-direction: column; }
@@ -244,10 +215,6 @@
 }
 </style>
 
-<a href="/dashboard-dokter" class="btn-back-dashboard">
-    ← Kembali ke Dashboard
-</a>
-
 <div class="container-resep">
     <div class="card-resep">
 
@@ -263,7 +230,7 @@
                     Data Resep Pasien
                 </h2>
 
-                <p style="margin:0; color:#000; font-size:14px; font-weight:400;">
+                <p style="margin:0; color:#777; font-size:14px; font-weight:400;">
                     Kelola dan buat resep obat untuk pasien berdasarkan hasil pemeriksaan.
                 </p>
             </div>

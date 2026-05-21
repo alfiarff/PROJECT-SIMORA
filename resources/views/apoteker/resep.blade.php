@@ -434,7 +434,7 @@
                     Daftar Resep Masuk
                 </h2>
 
-                <p style="margin:0; color:#888; font-size:14px; font-weight:400;">
+                <p style="margin:0; color:#777; font-size:14px; font-weight:400;">
                     Kelola dan siapkan obat berdasarkan resep dari dokter.
                 </p>
             </div>
