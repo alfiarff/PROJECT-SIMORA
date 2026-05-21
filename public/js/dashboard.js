@@ -1,3 +1,4 @@
+
 // ✅ Tandai menu aktif berdasarkan URL saat ini
 let list = document.querySelectorAll(".navigation li");
 

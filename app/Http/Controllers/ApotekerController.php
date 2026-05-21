@@ -95,11 +95,18 @@ class ApotekerController extends Controller
     return redirect()->back()->with('success', 'Status penebusan obat berhasil diperbarui.');
 }
 
-    public function stokObat()
-    {
-        $obats = Obat::orderBy('nama_obat', 'asc')->get();
-        return view('apoteker.stok_obat', compact('obats'));
-    }
+    public function stokObat(Request $request)
+{
+    $search = $request->search;
+
+    $obats = Obat::when($search, function ($query) use ($search) {
+            $query->where('nama_obat', 'like', '%' . $search . '%');
+        })
+        ->orderBy('nama_obat', 'asc')
+        ->paginate(10);
+
+    return view('apoteker.stok_obat', compact('obats'));
+}
 
     public function cetakPDF($id)
     {

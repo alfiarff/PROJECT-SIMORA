@@ -116,7 +116,6 @@
 
     <div class="filter-tabs">
         <a href="#" class="btn-filter active">Semua</a>
-        <a href="#" class="btn-filter">Belum dibaca</a>
     </div>
 
     @forelse($notifikasis as $notif)

@@ -20,44 +20,25 @@
 {{-- ✅ SUNTIKKAN FITUR BELL NOTIFIKASI KE TOPBAR --}}
 @push('notif-bell')
 <div class="notif-bell-wrapper" style="position:relative;">
-    <div onclick="toggleNotifDropdown()" style="cursor:pointer; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#f5f5f5; position:relative;">
-        <ion-icon name="notifications-outline" style="font-size:22px; color:#555;"></ion-icon>
-        @if(isset($notifBaru) && $notifBaru > 0)
-            <span style="position:absolute; top:4px; right:4px; background:#e74c3c; color:#fff; font-size:9px; font-weight:bold; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; line-height:1;">
-                {{ $notifBaru > 9 ? '9+' : $notifBaru }}
-            </span>
-        @endif
-    </div>
 
-    {{-- Dropdown Notifikasi --}}
-    <div id="notifDropdown" style="display:none; position:absolute; top:48px; right:0; width:300px; background:#fff; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.15); z-index:9999; overflow:hidden;">
-        <div style="padding:14px 18px; border-bottom:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-weight:700; color:#333; font-size:14px;">Notifikasi</span>
-            <a href="/apoteker/notifikasi" style="font-size:12px; color:#75162d; text-decoration:none; font-weight:600;">Lihat semua →</a>
+    <a href="{{ url('/apoteker/notifikasi') }}"
+       style="text-decoration:none;">
+
+        <div style="cursor:pointer; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#f5f5f5; position:relative;">
+
+            <ion-icon name="notifications-outline"
+                      style="font-size:22px; color:#555;">
+            </ion-icon>
+
+            @if(isset($notifBaru) && $notifBaru > 0)
+                <span style="position:absolute; top:4px; right:4px; background:#e74c3c; color:#fff; font-size:9px; font-weight:bold; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; line-height:1;">
+                    {{ $notifBaru > 9 ? '9+' : $notifBaru }}
+                </span>
+            @endif
+
         </div>
-        <div style="max-height:280px; overflow-y:auto;">
-            @forelse($notifList ?? [] as $notif)
-                @php
-                    $iconName  = $notif->tipe == 'success' ? 'checkmark-outline' : ($notif->tipe == 'warning' ? 'print-outline' : 'document-text-outline');
-                    $iconBg    = $notif->tipe == 'success' ? '#e8f8f0' : ($notif->tipe == 'warning' ? '#fff7e6' : '#e8f4fd');
-                    $iconColor = $notif->tipe == 'success' ? '#4caf50' : ($notif->tipe == 'warning' ? '#ff9800' : '#2196f3');
-                @endphp
-                <div style="padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #f9f9f9; {{ !$notif->is_read ? 'background:#fffbf0;' : '' }}">
-                    <div style="width:34px; height:34px; border-radius:50%; background:{{ $iconBg }}; color:{{ $iconColor }}; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                        <ion-icon name="{{ $iconName }}" style="font-size:16px;"></ion-icon>
-                    </div>
-                    <div style="flex:1; min-width:0;">
-                        <div style="font-size:12px; font-weight:600; color:#222; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $notif->judul }}</div>
-                        <div style="font-size:11px; color:#aaa; margin-top:1px;">{{ $notif->created_at->diffForHumans() }}</div>
-                    </div>
-                </div>
-            @empty
-                <div style="padding:25px; text-align:center; color:#aaa; font-size:13px;">
-                    Belum ada notifikasi
-                </div>
-            @endforelse
-        </div>
-    </div>
+    </a>
+
 </div>
 @endpush
 
@@ -184,10 +165,7 @@
 {{-- ✅ SUNTIKKAN SCRIPT KHUSUS UNTUK DROPDOWN NOTIFIKASI --}}
 @push('scripts')
 <script>
-    function toggleNotifDropdown() {
-        const d = document.getElementById('notifDropdown');
-        d.style.display = d.style.display === 'none' ? 'block' : 'none';
-    }
+
     document.addEventListener('click', function(e) {
         const wrapper = document.querySelector('.notif-bell-wrapper');
         if (wrapper && !wrapper.contains(e.target)) {

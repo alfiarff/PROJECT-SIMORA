@@ -189,6 +189,38 @@
         color: #fff;
         text-decoration: none;
     }
+/* Pagination */
+.pagination-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-top:25px;
+}
+
+.page-btn{
+    padding:10px 18px;
+    background:#75162d;
+    color:#fff;
+    text-decoration:none;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:500;
+    transition:.3s ease;
+}
+
+.page-btn:hover{
+    background:#5a1122;
+    transform:translateY(-1px);
+}
+
+.page-btn.disabled{
+    background:#d1d5db;
+    cursor:not-allowed;
+    pointer-events:none;
+}
+
+
 </style>
 
 <a href="/dashboard-pmik" class="btn-back-dashboard">
@@ -230,7 +262,7 @@
                 <tbody>
                     @forelse($pasien as $item)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $pasien->firstItem() + $loop->index }}</td>
                         <td>{{ $item->nomor_rm }}</td>
                         <td>{{ $item->nama_pasien }}</td>
                         <td>{{ $item->jenis_kelamin }}</td>
@@ -266,6 +298,27 @@
                     @endforelse
                 </tbody>
             </table>
+
+            {{-- Pagination --}}
+@if ($pasien->hasPages())
+<div class="pagination-wrapper">
+    @if ($pasien->onFirstPage())
+        <span class="page-btn disabled">« Previous</span>
+    @else
+        <a href="{{ $pasien->previousPageUrl() }}" class="page-btn">
+            « Previous
+        </a>
+    @endif
+
+    @if ($pasien->hasMorePages())
+        <a href="{{ $pasien->nextPageUrl() }}" class="page-btn">
+            Next »
+        </a>
+    @else
+        <span class="page-btn disabled">Next »</span>
+    @endif
+</div>
+@endif
         </div>
 
     </div>

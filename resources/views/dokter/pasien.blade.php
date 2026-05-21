@@ -182,6 +182,53 @@
         from { transform: translateY(30px); opacity: 0; }
         to   { transform: translateY(0);    opacity: 1; }
     }
+
+/* ================= PAGINATION CUSTOM ================= */
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.custom-pagination .pagination {
+    gap: 12px;
+}
+
+.custom-pagination .page-item .page-link {
+    padding: 10px 18px;
+    background: #75162d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .3s ease;
+    box-shadow: none;
+}
+
+.custom-pagination .page-item .page-link:hover {
+    background: #5a1122;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.custom-pagination .page-item.active .page-link {
+    background: #5a1122;
+    color: #fff;
+    border: none;
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    background: #d1d5db;
+    color: #6b7280;
+    border: none;
+    cursor: not-allowed;
+}
+
+.custom-pagination .page-link:focus {
+    box-shadow: none;
+}
 </style>
 
 <div class="container-pasien">
@@ -205,7 +252,7 @@
         <tbody>
             @forelse($pasiens as $key => $p)
             <tr>
-                <td>{{ $key + 1 }}</td>
+                <td>{{ $pasiens->firstItem() + $key }}</td>
                 <td>{{ $p->nomor_rm }}</td>
                 <td>{{ $p->nama_pasien }}</td>
                 <td>{{ $p->jenis_kelamin }}</td>
@@ -238,7 +285,12 @@
             @endforelse
         </tbody>
     </table>
+     <div class="custom-pagination">
+    {{ $pasiens->links('pagination::simple-bootstrap-5') }}
 </div>
+</div>
+
+
 
 {{-- ✅ Modal Detail Pasien --}}
 <div class="modal-overlay" id="detailModal">
@@ -248,6 +300,7 @@
         <div id="detailContent"></div>
     </div>
 </div>
+
 
 <script>
     // Search real-time

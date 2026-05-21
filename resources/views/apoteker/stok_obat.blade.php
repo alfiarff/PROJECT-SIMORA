@@ -214,6 +214,84 @@
             align-items:flex-start;
         }
     }
+
+
+/* ================= PAGINATION CUSTOM ================= */
+
+.custom-pagination{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+}
+
+.custom-pagination nav{
+    display:flex;
+    justify-content:center;
+}
+
+.custom-pagination ul{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.custom-pagination li{
+    list-style:none;
+}
+
+/* TOMBOL */
+.custom-pagination .page-link{
+    padding:10px 20px !important;
+    border:none !important;
+    border-radius:10px !important;
+    background:#75162d !important;
+    color:#fff !important;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .3s ease;
+    min-width:120px;
+    box-shadow:none !important;
+}
+
+/* HOVER */
+.custom-pagination .page-link:hover{
+    background:#5a1122 !important;
+    color:#fff !important;
+    transform:translateY(-2px);
+}
+
+/* ACTIVE */
+.custom-pagination .active .page-link{
+    background:#5a1122 !important;
+    color:#fff !important;
+}
+
+/* DISABLED */
+.custom-pagination .disabled .page-link{
+    background:#d1d5db !important;
+    color:#6b7280 !important;
+    cursor:not-allowed;
+}
+
+/* HILANGKAN BORDER BIRU */
+.custom-pagination .page-link:focus{
+    box-shadow:none !important;
+    outline:none !important;
+}
+
+/* ICON PANAH */
+.custom-pagination svg{
+    width:14px !important;
+    height:14px !important;
+    flex-shrink:0;
+}
 </style>
 
 <div class="container-stok">
@@ -366,6 +444,9 @@
                     @endforelse
                 </tbody>
             </table>
+           <div class="custom-pagination">
+    {{ $obats->links('pagination::simple-bootstrap-5') }}
+</div>
         </div>
 
     </div>

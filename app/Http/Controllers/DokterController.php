@@ -42,10 +42,11 @@ class DokterController extends Controller
     // Method untuk menampilkan halaman Data Pasien khusus Dokter
     public function dataPasien()
     {
-        $pasiens = \App\Models\Pasien::withCount('resep')
-                ->orderBy('resep_count', 'asc')
-                ->orderBy('created_at', 'desc') // (Opsional) Mengurutkan pasien pendaftar terbaru
-                ->get();
+        $pasiens = Pasien::with('resep')
+            ->withCount('resep')
+            ->orderBy('resep_count', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
         
         // Memanggil file pasien.blade.php yang ada di dalam folder 'dokter'
         return view('dokter.pasien', compact('pasiens')); 
