@@ -4,8 +4,9 @@
 <style>
     /* Styling Container Utama */
     .notif-wrapper {
+        border-radius: 18px;
         padding: 30px;
-        background-color: #fafbfe;
+        background-color: #fff;
         min-height: 100vh;
     }
 
@@ -50,20 +51,21 @@
 
     /* Styling Kartu Notifikasi */
     .notif-card {
-        background: #fff;
-        border-radius: 12px;
-        padding: 20px 25px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-        border: 1px solid #f0f0f0;
-        margin-bottom: 15px;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    margin-bottom: 18px;
+    transition: all 0.25s ease;
+}
+    
     .notif-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
 
     /* Styling Lingkaran Icon */
     .icon-circle {
