@@ -258,7 +258,15 @@
         @endif
 
         <div class="header-resep">
-            <h2>Data Resep Pasien</h2>
+            <div>
+                <h2 style="color:#5a1122; font-weight:700; margin-bottom:5px;">
+                    Data Resep Pasien
+                </h2>
+
+                <p style="margin:0; color:#000; font-size:14px; font-weight:400;">
+                    Kelola dan buat resep obat untuk pasien berdasarkan hasil pemeriksaan.
+                </p>
+            </div>
 
             <div class="actions">
                 {{-- Tombol Tambah Resep Disembunyikan --}}
@@ -267,7 +275,11 @@
             + Tambah Resep
             </a> 
                 --}}
-                <input type="text" id="searchInput" class="search-box" placeholder="Cari resep...">
+
+                <input type="text"
+                    id="searchInput"
+                    class="search-box"
+                    placeholder="Cari resep...">
             </div>
         </div>
 
@@ -365,7 +377,7 @@
                 </div>
             </div>
             <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
-                <strong>Pasien:</strong> ${namaPasien} (RM: ${noRm})
+                <strong>Pasien:</strong> ${namaPasien} (${noRm})
             </div>
             <div style="border-top: 1px dashed #ccc; padding-top: 15px;">
                 <strong>Diagnosa:</strong> <br>${diagnosa} <br><br>

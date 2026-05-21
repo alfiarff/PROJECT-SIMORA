@@ -235,14 +235,28 @@
             </div>
         @endif
 
-        <div class="header-pasien">
-            <h2>Data Pasien</h2>
+<div class="header-pasien">
+    <div>
+        <h2 style="color:#5a1122; font-weight:700; margin-bottom:5px;">
+            Data Pasien
+        </h2>
 
-            <div class="actions">
-                <a href="/pasien/create" class="btn-custom btn-add">+ Tambah Pasien</a>
-                <input type="text" id="searchInput" class="search-box" placeholder="Cari pasien...">
-            </div>
-        </div>
+        <p style="margin:0; color:#000; font-size:14px; font-weight:400;">
+            Kelola dan tambahkan data pasien berdasarkan identitas dan informasi pasien.
+        </p>
+    </div>
+
+    <div class="actions">
+        <a href="/pasien/create" class="btn-custom btn-add">
+            + Tambah Pasien
+        </a>
+
+        <input type="text"
+               id="searchInput"
+               class="search-box"
+               placeholder="Cari pasien...">
+    </div>
+</div>
 
         <div class="table-wrapper">
             <table class="table-pasien" id="dataTable">

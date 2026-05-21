@@ -94,11 +94,18 @@
     .btn-lihat { 
         background-color: #5b9bd5; 
     }
-    .btn-lihat:hover { 
-        background-color: #4a82b8; /* Biru lebih gelap */
-        transform: translateY(-2px); /* Efek terangkat */
-        box-shadow: 0 4px 10px rgba(91, 155, 213, 0.4); /* Bayangan biru */
+
+    .btn-lihat:hover{
+        background-color:#5b9bd5 !important;
+        color:#fff !important;
+        transform:none !important;
+        box-shadow:none !important;
     }
+
+.table-pasien tbody tr:hover .btn-lihat{
+    background:#5b9bd5 !important;
+    color:#fff !important;
+}
 
     /* Tombol Tambah Resep (Hijau) */
     .btn-resep { 
@@ -232,10 +239,22 @@
 </style>
 
 <div class="container-pasien">
-    <div class="header-pasien">
-        <h2>Data Pasien</h2>
-        <input type="text" id="searchInput" class="search-box" placeholder="Cari pasien...">
+<div class="header-pasien">
+    <div>
+        <h2 style="color:#5a1122; font-weight:700; margin-bottom:5px;">
+            Data Pasien
+        </h2>
+
+        <p style="margin:0; color:#000; font-size:14px; font-weight:400;">
+            Lihat data pasien dan lakukan proses peresepan obat sesuai kebutuhan pelayanan.
+        </p>
     </div>
+
+    <input type="text"
+           id="searchInput"
+           class="search-box"
+           placeholder="Cari pasien...">
+</div>
 
     <table class="table-pasien" id="dataTable">
         <thead>

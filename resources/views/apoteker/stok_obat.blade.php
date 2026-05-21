@@ -304,7 +304,15 @@
         @endif
 
         <div class="header-stok">
-            <h2>Data Stok Obat</h2>
+            <div>
+                <h2 style="color:#5a1122; font-weight:700; margin-bottom:5px;">
+                    Data Stok Obat
+                </h2>
+
+                <p style="margin:0; color:#888; font-size:14px; font-weight:400;">
+                    Kelola data obat, perbarui stok, dan pantau ketersediaan obat di apotek.
+                </p>
+            </div>
 
             <button type="button"
                     class="btn-custom btn-add"

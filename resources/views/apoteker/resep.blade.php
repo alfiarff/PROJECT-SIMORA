@@ -430,8 +430,11 @@
 
         <div class="page-header">
             <div>
-                <h2 class="page-title">Daftar Resep Masuk</h2>
-                <p class="page-subtitle">
+                <h2 style="color:#5a1122; font-weight:700; margin-bottom:5px;">
+                    Daftar Resep Masuk
+                </h2>
+
+                <p style="margin:0; color:#888; font-size:14px; font-weight:400;">
                     Kelola dan siapkan obat berdasarkan resep dari dokter.
                 </p>
             </div>
