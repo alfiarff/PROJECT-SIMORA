@@ -1,757 +1,369 @@
 @extends('dashboard-apoteker') 
 @section('hide_search', true)
-
 @section('content')
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-    :root{
-        --primary:#75162d;
-        --blue:#3498db;
-        --orange:#f39c12;
-        --red:#e74c3c;
-    }
-
     .simora-container {
+        font-family: "Poppins", sans-serif;
+        padding: 25px; 
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        margin: 10px 0; 
         width: 100%;
-        margin: 0 auto;
-        font-family: inherit !important;
+        box-sizing: border-box; 
+        min-height: calc(100vh - 110px);
     }
 
-    .card-resep{
-        background: #fff;
-        padding: 25px;
-        border-radius: 18px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .page-header{
+    .page-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
-    .page-title{
-        color: var(--primary);
-        font-weight: 700;
-        margin-bottom: 5px;
+    .page-title { 
+        color: #75162d; 
+        font-size: 24px;
+        font-weight: 700; 
+        margin-bottom: 5px; 
+    }
+    
+    .page-subtitle { 
+        color: #666; 
+        font-size: 14px; 
     }
 
-    .page-subtitle{
-        color: #666;
-        font-size: 14px;
-    }
-
-    .search-box input{
-        padding: 10px 14px;
-        border-radius: 8px;
+    .search-box input {
+        padding: 10px 15px;
         border: 1px solid #ddd;
-        min-width: 220px;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 250px;
         outline: none;
+        transition: 0.3s;
     }
 
-    .alert-success{
-        background-color: #d4edda;
-        color: #155724;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid #c3e6cb;
+    .search-box input:focus {
+        border-color: #75162d;
+        box-shadow: 0 0 5px rgba(117, 22, 45, 0.2);
     }
 
-    .alert-danger{
-        background-color: #f8d7da;
-        color: #721c24;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid #f5c6cb;
-    }
+    .alert-success { background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    .alert-danger  { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
 
-    .table-wrapper{
+    .table-wrapper {
+        width: 100%;
         overflow-x: auto;
     }
 
-    .table-simora{
-        width: 100%;
-        border-collapse: collapse;
+    .table-simora { 
+        width: 100%; 
+        border-collapse: collapse; 
     }
 
-    .table-simora thead{
-        background: #f3f3f3;
+    .table-simora thead tr {
+        background-color: #f8f9fa; 
+        border-bottom: 2px solid #eee;
     }
 
-    .table-simora th{
-        padding: 14px;
-        font-weight: 700;
-        text-align: center;
+    .table-simora th {
         color: #333;
-        font-size: 14px;
-        border: none;
+        padding: 12px 10px; 
+        text-align: center;
+        font-size: 13px; 
+        font-weight: 600;
         white-space: nowrap;
     }
 
-    .table-simora td{
-        padding: 14px;
-        text-align: center;
+    .table-simora td {
+        padding: 15px 10px; 
         border-bottom: 1px solid #eee;
-        font-size: 14px;
+        font-size: 13px;
         color: #444;
         vertical-align: middle;
-    }
-    .table-simora tbody tr:hover td {
-    background-color: #5a1122;
-    color: #fff;
-    transition: 0.2s ease;
-}
-
-/* Semua teks biasa jadi putih saat hover */
-.table-simora tbody tr:hover td,
-.table-simora tbody tr:hover td strong,
-.table-simora tbody tr:hover td small,
-.table-simora tbody tr:hover td span,
-.table-simora tbody tr:hover td li,
-.table-simora tbody tr:hover td form,
-.table-simora tbody tr:hover td a:not(.btn-aksi) {
-    color: #fff !important;
-}
-
-/* Dosis/jumlah obat merah jadi putih saat hover */
-.table-simora tbody tr:hover td span[style*="#75162d"] {
-    color: #fff !important;
-}
-
-/* Auto BPJS jadi putih saat hover */
-.table-simora tbody tr:hover small {
-    color: #fff !important;
-}
-
-/* Badge yang punya background sendiri tetap normal */
-.table-simora tbody tr:hover .badge-asuransi,
-.table-simora tbody tr:hover .badge-umum,
-.table-simora tbody tr:hover .badge-pending,
-.table-simora tbody tr:hover .badge-diproses,
-.table-simora tbody tr:hover .badge-selesai,
-.table-simora tbody tr:hover .badge-habis,
-.table-simora tbody tr:hover .stok-aman,
-.table-simora tbody tr:hover .stok-menipis,
-.table-simora tbody tr:hover .stok-habis,
-.table-simora tbody tr:hover .btn-validasi,
-.table-simora tbody tr:hover .btn-cetak {
-    color: inherit !important;
-}
-
-/* Background badge & button tetap */
-.table-simora tbody tr:hover .badge-asuransi {
-    background:#e8f4fd !important;
-    color:#1a6fa3 !important;
-}
-
-.table-simora tbody tr:hover .badge-umum {
-    background:#f0f0f0 !important;
-    color:#555 !important;
-}
-
-.table-simora tbody tr:hover .badge-pending {
-    background:#ffc107 !important;
-    color:#212529 !important;
-}
-
-.table-simora tbody tr:hover .badge-diproses {
-    background:#0d6efd !important;
-    color:#fff !important;
-}
-
-.table-simora tbody tr:hover .badge-selesai {
-    background:#198754 !important;
-    color:#fff !important;
-}
-
-.table-simora tbody tr:hover .badge-habis {
-    background:#dc3545 !important;
-    color:#fff !important;
-}
-
-.table-simora tbody tr:hover .stok-aman {
-    background:#d4edda !important;
-    color:#155724 !important;
-}
-
-.table-simora tbody tr:hover .stok-menipis {
-    background:#fff3cd !important;
-    color:#856404 !important;
-}
-
-.table-simora tbody tr:hover .stok-habis {
-    background:#f8d7da !important;
-    color:#721c24 !important;
-}
-
-.table-simora tbody tr:hover .btn-validasi {
-    background:#28a745 !important;
-    color:#fff !important;
-}
-
-.table-simora tbody tr:hover .btn-cetak {
-    background:#75162d !important;
-    color:#fff !important;
-}
-
-    .obat-list{
-        margin: 0;
-        padding-left: 0;
-        list-style: none;
+        text-align: center;
     }
 
-    .obat-list li{
-        margin-bottom: 6px;
-        line-height: 1.4;
+    .table-simora th:nth-child(3), .table-simora td:nth-child(3),
+    .table-simora th:nth-child(6), .table-simora td:nth-child(6),
+    .table-simora th:nth-child(7), .table-simora td:nth-child(7) {
+        text-align: left;
     }
 
-    .badge-pending{
-        background:#ffc107;
-        color:#212529;
-        padding:5px 12px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:600;
-    }
+    /* --- BADGES --- */
+    .obat-list { margin: 0; padding-left: 0; list-style: none; }
+    .obat-list li { margin-bottom: 8px; line-height: 1.4; }
 
-    .badge-diproses{
-        background:#0d6efd;
-        color:#fff;
-        padding:5px 12px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:600;
-    }
+    .badge-pending   { background:#ffc107; color:#212529; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; display:inline-block; }
+    .badge-diproses  { background:#0d6efd; color:#fff;    padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; display:inline-block; }
+    .badge-selesai   { background:#198754; color:#fff;    padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; display:inline-block; }
+    .badge-habis     { background:#dc3545; color:#fff;    padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; display:inline-block; }
 
-    .badge-selesai{
-        background:#198754;
-        color:#fff;
-        padding:5px 12px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:600;
-    }
+    .stok-aman    { background:#d4edda; color:#155724; padding:3px 10px; border-radius:10px; font-size:11px; font-weight:600; display:inline-block; white-space:nowrap; margin-bottom:4px; }
+    .stok-menipis { background:#fff3cd; color:#856404; padding:3px 10px; border-radius:10px; font-size:11px; font-weight:600; display:inline-block; white-space:nowrap; margin-bottom:4px; }
+    .stok-habis   { background:#f8d7da; color:#721c24; padding:3px 10px; border-radius:10px; font-size:11px; font-weight:600; display:inline-block; white-space:nowrap; margin-bottom:4px; }
 
-    .badge-habis{
-        background:#dc3545;
-        color:#fff;
-        padding:5px 12px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:600;
-    }
+    .badge-asuransi { background:#e8f4fd; color:#1a6fa3; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600; display:inline-block; }
+    .badge-umum     { background:#f0f0f0; color:#555;    padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600; display:inline-block; }
 
-    .stok-aman{
-        background:#d4edda;
-        color:#155724;
-        padding:2px 8px;
-        border-radius:10px;
-        font-size:11px;
-        font-weight:600;
-        display:inline-block;
-        white-space:nowrap;
-        margin-bottom:4px;
-    }
-
-    .stok-menipis{
-        background:#fff3cd;
-        color:#856404;
-        padding:2px 8px;
-        border-radius:10px;
-        font-size:11px;
-        font-weight:600;
-        display:inline-block;
-        white-space:nowrap;
-        margin-bottom:4px;
-    }
-
-    .stok-habis{
-        background:#f8d7da;
-        color:#721c24;
-        padding:2px 8px;
-        border-radius:10px;
-        font-size:11px;
-        font-weight:600;
-        display:inline-block;
-        white-space:nowrap;
-        margin-bottom:4px;
-    }
-
-    .badge-asuransi{
-        background:#e8f4fd;
-        color:#1a6fa3;
-        padding:3px 10px;
-        border-radius:10px;
-        font-size:12px;
-        font-weight:500;
-    }
-
-    .badge-umum{
-        background:#f0f0f0;
-        color:#555;
-        padding:3px 10px;
-        border-radius:10px;
-        font-size:12px;
-        font-weight:500;
-    }
-
-    .btn-aksi{
+    /* --- BUTTONS DEFAULT --- */
+    .btn-aksi {
         padding: 8px 14px;
-        border-radius: 8px;
-        font-size: 13px;
+        border-radius: 6px;
+        font-size: 12px;
         font-weight: 500;
         text-decoration: none;
         display: inline-block;
         margin-bottom: 5px;
         border: none;
         cursor: pointer;
-        transition: 0.3s;
+        transition: all 0.2s ease;
         white-space: nowrap;
-        color: white;
     }
 
-    .btn-validasi{
-        background:#28a745;
+    .btn-aksi.btn-validasi {
+        background: #28a745;
+        color: #fff;
+    }
+    .btn-aksi.btn-validasi:hover {
+        background: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(40,167,69,0.4);
     }
 
-    .btn-validasi:hover{
-        background:#218838;
-        color:#fff;
+    .btn-aksi.btn-cetak {
+        background: #75162d;
+        color: #fff;
+    }
+    .btn-aksi.btn-cetak:hover {
+        background: #540816;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(117,22,45,0.4);
     }
 
-    .btn-cetak{
-        background:#75162d;
+    /* === HOVER BARIS TABEL === */
+    .table-simora tbody tr {
+        transition: background-color 0.2s ease;
     }
 
-    .btn-cetak:hover{
-        background:#540816;
-        color:#fff;
+    .table-simora tbody tr:hover {
+        background-color: #5a1122;
     }
 
-    @media(max-width:768px){
-        .page-header{
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .search-box input{
-            width: 100%;
-        }
+    .table-simora tbody tr:hover td,
+    .table-simora tbody tr:hover td span,
+    .table-simora tbody tr:hover td strong {
+        color: #fff !important;
     }
 
-/* ================= PAGINATION CUSTOM ================= */
+    /* Badge saat hover */
+    .table-simora tbody tr:hover .badge-asuransi { background:#3b82f6 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .badge-umum     { background:#6b7280 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .badge-pending  { background:#f59e0b !important; color:#fff !important; }
+    .table-simora tbody tr:hover .badge-diproses { background:#3b82f6 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .badge-selesai  { background:#10b981 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .badge-habis    { background:#ef4444 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .stok-aman      { background:#10b981 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .stok-menipis   { background:#f59e0b !important; color:#fff !important; }
+    .table-simora tbody tr:hover .stok-habis     { background:#ef4444 !important; color:#fff !important; }
 
-.custom-pagination{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
-}
+    /* Tombol saat hover baris — warna tetap sama */
+    .table-simora tbody tr:hover .btn-aksi.btn-validasi { background:#28a745 !important; color:#fff !important; }
+    .table-simora tbody tr:hover .btn-aksi.btn-cetak    { background:#75162d !important; color:#fff !important; }
 
-.custom-pagination nav{
-    display:flex;
-    justify-content:center;
-}
-
-.custom-pagination ul{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:0;
-    margin:0;
-    list-style:none;
-}
-
-.custom-pagination li{
-    list-style:none;
-}
-
-/* TOMBOL */
-.custom-pagination .page-link{
-    padding:10px 18px !important;
-    border-radius:10px !important;
-    border:none !important;
-    background:#75162d !important;
-    color:#fff !important;
-    font-size:14px;
-    font-weight:600;
-    text-decoration:none !important;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    min-width:110px;
-    transition:all .3s ease;
-    box-shadow:none !important;
-}
-
-/* HOVER */
-.custom-pagination .page-link:hover{
-    background:#5a1122 !important;
-    color:#fff !important;
-    transform:translateY(-2px);
-}
-
-/* ACTIVE */
-.custom-pagination .active .page-link{
-    background:#5a1122 !important;
-    color:#fff !important;
-}
-
-/* DISABLED */
-.custom-pagination .disabled .page-link{
-    background:#d1d5db !important;
-    color:#6b7280 !important;
-    cursor:not-allowed;
-}
-
-/* HILANGKAN BORDER BIRU BOOTSTRAP */
-.custom-pagination .page-link:focus{
-    box-shadow:none !important;
-    outline:none !important;
-}
-
-/* FIX ICON PANAH */
-.custom-pagination svg{
-    width:14px !important;
-    height:14px !important;
-    flex-shrink:0;
-}
-
+    /* ================= PAGINATION ================= */
+    .custom-pagination { margin-top:25px; display:flex; justify-content:center; }
+    .custom-pagination nav { display:flex; justify-content:center; }
+    .custom-pagination ul { display:flex; align-items:center; gap:12px; padding:0; margin:0; list-style:none; }
+    .custom-pagination li { list-style:none; }
+    .custom-pagination .page-link { padding:10px 18px !important; border-radius:10px !important; border:none !important; background:#75162d !important; color:#fff !important; font-size:14px; font-weight:600; text-decoration:none !important; display:flex; align-items:center; justify-content:center; gap:6px; min-width:110px; transition:all .3s ease; box-shadow:none !important; }
+    .custom-pagination .page-link:hover { background:#5a1122 !important; color:#fff !important; transform:translateY(-2px); }
+    .custom-pagination .active .page-link { background:#5a1122 !important; color:#fff !important; }
+    .custom-pagination .disabled .page-link { background:#d1d5db !important; color:#6b7280 !important; cursor:not-allowed; }
+    .custom-pagination .page-link:focus { box-shadow:none !important; outline:none !important; }
+    .custom-pagination svg { width:14px !important; height:14px !important; flex-shrink:0; }
 </style>
 
 <div class="simora-container">
-    <div class="card-resep">
-
-        <div class="page-header">
-            <div>
-                <h2 style="color:#5a1122; font-weight:700; margin-bottom:5px;">
-                    Daftar Resep Masuk
-                </h2>
-
-                <p style="margin:0; color:#777; font-size:14px; font-weight:400;">
-                    Kelola dan siapkan obat berdasarkan resep dari dokter.
-                </p>
-            </div>
-
-            <div class="search-box">
-                <form method="GET" action="{{ route('apoteker.resep.index') }}">
-                    <input type="text"
-                           name="search"
-                           placeholder="Cari resep..."
-                           value="{{ request('search') }}">
-                </form>
-            </div>
+    <div class="page-header">
+        <div>
+            <h2 class="page-title">Daftar Resep Masuk</h2>
+            <p class="page-subtitle">Kelola dan siapkan obat berdasarkan resep dari dokter.</p>
         </div>
+        <div class="search-box">
+            <form method="GET" action="{{ route('apoteker.resep.index') }}">
+                <input type="text" name="search" placeholder="Cari resep..." value="{{ request('search') }}">
+            </form>
+        </div>
+    </div>
 
-        @if(session('success'))
-            <div class="alert-success">
-                <strong>Berhasil!</strong> {{ session('success') }}
-            </div>
-        @endif
+    @if(session('success'))
+        <div class="alert-success"><strong>Berhasil!</strong> {{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="alert-danger"><strong>Gagal!</strong> {{ session('error') }}</div>
+    @endif
 
-        @if(session('error'))
-            <div class="alert-danger">
-                <strong>Gagal!</strong> {{ session('error') }}
-            </div>
-        @endif
-
-        <div class="table-wrapper">
-            <table class="table-simora">
-                <thead>
+    <div class="table-wrapper">
+        <table class="table-simora">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Pasien & Diagnosa</th>
+                    <th>Dokter</th>
+                    <th>Asuransi</th>
+                    <th>Detail Obat (Nama - Dosis - Jumlah)</th>
+                    <th>Stok Obat</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($data as $index => $item)
+                    @php
+                        $obat_array   = explode(',', $item->nama_obat);
+                        $dosis_array  = explode(',', $item->dosis_obat);
+                        $jumlah_array = explode(',', $item->jumlah);
+                        $asuransi     = $item->pasien->status_asuransi ?? 'Umum';
+                        $isBPJS       = in_array(strtolower($asuransi), ['bpjs', 'bpjs kesehatan']);
+                        $obatDipilih  = $item->obat_dipilih
+                                        ? array_map('strval', json_decode($item->obat_dipilih, true))
+                                        : [];
+                    @endphp
                     <tr>
-                        <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Pasien & Diagnosa</th>
-                        <th>Dokter</th>
-                        <th>Asuransi</th>
-                        <th>Penebusan</th>
-                        <th>Detail Obat </th>
-                        <th>Stok Obat</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
+                        {{-- No --}}
+                        <td>{{ $data->firstItem() + $index }}</td>
 
-                <tbody>
-                    @forelse($data as $index => $item)
+                        {{-- Tanggal --}}
+                        <td style="white-space:nowrap; font-weight:500;">
+                            {{ \Carbon\Carbon::parse($item->tanggal_resep)->format('d M Y') }}
+                        </td>
 
-                        @php
-                            $obat_array   = explode(',', $item->nama_obat);
-                            $dosis_array  = explode(',', $item->dosis_obat);
-                            $jumlah_array = explode(',', $item->jumlah);
+                        {{-- Pasien & Diagnosa --}}
+                        <td>
+                            <strong style="color: #111; font-size: 14px;">{{ $item->pasien->nama_pasien ?? 'Pasien Dihapus' }}</strong><br>
+                            <span style="color:#777; font-size: 12px;">{{ $item->diagnosa }}</span>
+                        </td>
 
-                            $asuransi = $item->pasien->status_asuransi ?? 'Umum';
+                        {{-- Dokter --}}
+                        <td style="font-size:13px; font-weight:500; color:#555;">{{ $item->nama_dokter }}</td>
 
-                            $isBPJS = in_array(strtolower($asuransi), [
-                                'bpjs',
-                                'bpjs kesehatan'
-                            ]);
+                        {{-- Asuransi --}}
+                        <td>
+                            @if($isBPJS)
+                                <span class="badge-asuransi">{{ $asuransi }}</span>
+                            @elseif($asuransi && !in_array(strtolower($asuransi), ['umum', 'tidak ada', '-']))
+                                <span class="badge-asuransi">{{ $asuransi }}</span>
+                            @else
+                                <span class="badge-umum">Umum</span>
+                            @endif
+                        </td>
 
-                            $obatDipilih = $item->obat_dipilih
-                                ? array_map('strval', json_decode($item->obat_dipilih, true))
-                                : [];
-                        @endphp
-
-                        <tr>
-
-                            {{-- No --}}
-                            <td>
-                                {{ $data->firstItem() + $index }}
-                            </td>
-
-                            {{-- Tanggal --}}
-                            <td style="white-space: nowrap;">
-                                {{ \Carbon\Carbon::parse($item->tanggal_resep)->format('d M Y') }}
-                            </td>
-
-                            {{-- Pasien --}}
-                            <td>
-                                <strong>
-                                    {{ $item->pasien->nama_pasien ?? 'Pasien Dihapus' }}
-                                </strong>
-                                <br>
-                                <small style="color:#888;">
-                                    {{ $item->diagnosa }}
-                                </small>
-                            </td>
-
-                            {{-- Dokter --}}
-                            <td>
-                                {{ $item->nama_dokter }}
-                            </td>
-
-                            {{-- Asuransi --}}
-                            <td>
-                                @if($isBPJS)
-                                    <span class="badge-asuransi">
-                                        {{ $asuransi }}
-                                    </span>
-
-                                @elseif($asuransi && !in_array(strtolower($asuransi), ['umum', 'tidak ada', '-']))
-                                    <span class="badge-asuransi">
-                                        {{ $asuransi }}
-                                    </span>
-
-                                @else
-                                    <span class="badge-umum">
-                                        Umum
-                                    </span>
-                                @endif
-                            </td>
-
-                            {{-- Penebusan --}}
-                            <td>
-                                @if($isBPJS)
-
-                                    <input type="checkbox"
-                                           checked
-                                           disabled
-                                           style="width:18px; height:18px; accent-color:#0d6efd; cursor:not-allowed;">
-
-                                    <small style="display:block; margin-top:3px;">
-                                        Auto BPJS
-                                    </small>
-
-                                @else
-
-                                    <form method="POST"
-                                          action="{{ route('apoteker.resep.penebusan', $item->id) }}">
-
-                                        @csrf
-
-                                        <input type="checkbox"
-                                               name="penebusan_obat"
-                                               value="1"
-                                               onchange="this.form.submit()"
-                                               {{ $item->penebusan_obat ? 'checked' : '' }}
-                                               style="width:18px; height:18px; cursor:pointer; accent-color:#0d6efd;">
-
-                                    </form>
-
-                                @endif
-                            </td>
-
-                            {{-- Detail Obat --}}
-                            <td style="text-align:left;">
-                                <ul class="obat-list">
-
-                                    @foreach($obat_array as $key => $obat)
-
-                                        @php
-                                            $namaObat = trim($obat);
-                                            $dosis    = trim($dosis_array[$key] ?? '-');
-                                            $jumlah   = (int) trim($jumlah_array[$key] ?? 0);
-
-                                            $dipilih  = in_array((string)$key, $obatDipilih);
-                                        @endphp
-
-                                        <li style="margin-bottom:8px; display:flex; align-items:center; gap:8px;">
-
-                                            <form method="POST"
-                                                  action="{{ route('apoteker.resep.pilihobat', $item->id) }}"
-                                                  style="display:inline;">
-
+                        {{-- Detail Obat + Checkbox (Otomatis & Terkunci untuk BPJS) --}}
+                        <td>
+                            <ul class="obat-list">
+                                @foreach($obat_array as $key => $obat)
+                                    @php
+                                        $namaObat = trim($obat);
+                                        $dosis    = trim($dosis_array[$key] ?? '-');
+                                        $jumlah   = (int) trim($jumlah_array[$key] ?? 0);
+                                        $dipilih  = in_array((string)$key, $obatDipilih);
+                                    @endphp
+                                    <li style="display:flex; align-items:center; gap:10px;">
+                                            <form method="POST" action="{{ route('apoteker.resep.pilihobat', $item->id) }}" style="display:inline;">
                                                 @csrf
-
                                                 @foreach($obatDipilih as $idx)
                                                     @if((string)$idx !== (string)$key)
-                                                        <input type="hidden"
-                                                               name="obat_dipilih[]"
-                                                               value="{{ $idx }}">
+                                                        <input type="hidden" name="obat_dipilih[]" value="{{ $idx }}">
                                                     @endif
                                                 @endforeach
-
                                                 <input type="checkbox"
                                                        name="obat_dipilih[]"
                                                        value="{{ $key }}"
                                                        {{ $dipilih ? 'checked' : '' }}
                                                        onchange="this.form.submit()"
-                                                       style="width:15px; height:15px; accent-color:#0d6efd; cursor:pointer; flex-shrink:0;">
+                                                       style="width:16px; height:16px; accent-color:#0d6efd; cursor:pointer; flex-shrink:0;">
+                                            </form>                                        
+                                        <span>
+                                            <strong style="color: #222;">{{ $namaObat }}</strong>
+                                            <span style="color: #666;">({{ $dosis }})</span> - <span style="color:#75162d; font-weight:600;">{{ $jumlah }} Pcs</span>
+                                        </span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </td>
 
-                                            </form>
+                        {{-- Stok Obat --}}
+                        <td>
+                            <ul class="obat-list">
+                                @foreach($obat_array as $key => $obat)
+                                    @php
+                                        $namaObat = trim($obat);
+                                        $obatData = $obats[$namaObat] ?? null;
+                                        $stokDb   = $obatData ? $obatData->stok : null;
 
-                                            <span>
-                                                <strong>{{ $namaObat }}</strong>
-                                                ({{ $dosis }})
-                                                -
-                                                <span style="color:#75162d; font-weight:bold;">
-                                                    {{ $jumlah }} Pcs
-                                                </span>
-                                            </span>
+                                        if ($stokDb === null) {
+                                            $stokLabel = '<span class="stok-habis">Tidak Ada</span>';
+                                        } elseif ($stokDb <= 0) {
+                                            $stokLabel = '<span class="stok-habis">Habis (0)</span>';
+                                        } elseif ($stokDb <= 10) {
+                                            $stokLabel = '<span class="stok-menipis">Menipis (' . $stokDb . ')</span>';
+                                        } else {
+                                            $stokLabel = '<span class="stok-aman">Tersedia (' . $stokDb . ')</span>';
+                                        }
+                                    @endphp
+                                    <li>{!! $stokLabel !!}</li>
+                                @endforeach
+                            </ul>
+                        </td>
 
-                                        </li>
+                        {{-- Status --}}
+                        <td>
+                            @if($item->status == 'Pending')
+                                <span class="badge-pending">Pending</span>
+                            @elseif($item->status == 'Diproses')
+                                <span class="badge-diproses">Diproses</span>
+                            @elseif($item->status == 'Selesai')
+                                <span class="badge-selesai">Selesai</span>
+                            @else
+                                <span class="badge-habis">{{ $item->status }}</span>
+                            @endif
+                        </td>
 
-                                    @endforeach
+                        {{-- Aksi --}}
+                        <td>
+                            @if($item->status != 'Selesai')
+                                <form method="POST" action="{{ route('resep.updateStatus', $item->id) }}" style="display:inline; margin-bottom:5px;">
+                                    @csrf
+                                    <input type="hidden" name="status" value="Selesai">
+                                    <button type="submit" class="btn-aksi btn-validasi">✔ Validasi Resep</button>
+                                </form>
+                            @endif
 
-                                </ul>
-                            </td>
+                            @if($item->status == 'Selesai')
+                                <a href="{{ route('apoteker.resep.detail', $item->id) }}" class="btn-aksi btn-cetak">
+                                    🖨 Cetak Salinan
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="9" style="text-align:center; padding:40px; color:#999; font-size:14px;">
+                            Belum ada data resep yang masuk.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
-                            {{-- Stok --}}
-                            <td>
-                                <ul class="obat-list">
-
-                                    @foreach($obat_array as $key => $obat)
-
-                                        @php
-                                            $namaObat = trim($obat);
-
-                                            $obatData = $obats[$namaObat] ?? null;
-
-                                            $stokDb = $obatData
-                                                ? $obatData->stok
-                                                : null;
-
-                                            if ($stokDb === null) {
-                                                $stokLabel = '<span class="stok-habis">Tidak Ditemukan</span>';
-                                            } elseif ($stokDb <= 0) {
-                                                $stokLabel = '<span class="stok-habis">Habis (0)</span>';
-                                            } elseif ($stokDb <= 10) {
-                                                $stokLabel = '<span class="stok-menipis">Menipis (' . $stokDb . ')</span>';
-                                            } else {
-                                                $stokLabel = '<span class="stok-aman">Tersedia (' . $stokDb . ')</span>';
-                                            }
-                                        @endphp
-
-                                        <li style="margin-bottom:6px;">
-                                            {!! $stokLabel !!}
-                                        </li>
-
-                                    @endforeach
-
-                                </ul>
-                            </td>
-
-                            {{-- Status --}}
-                            <td>
-
-                                @if($item->status == 'Pending')
-
-                                    <span class="badge-pending">
-                                        Pending
-                                    </span>
-
-                                @elseif($item->status == 'Diproses')
-
-                                    <span class="badge-diproses">
-                                        Diproses
-                                    </span>
-
-                                @elseif($item->status == 'Selesai')
-
-                                    <span class="badge-selesai">
-                                        Selesai
-                                    </span>
-
-                                @else
-
-                                    <span class="badge-habis">
-                                        {{ $item->status }}
-                                    </span>
-
-                                @endif
-
-                            </td>
-
-                            {{-- Aksi --}}
-                            <td>
-
-                                @if($item->status != 'Selesai')
-
-                                    <form method="POST"
-                                          action="{{ route('resep.updateStatus', $item->id) }}"
-                                          style="display:inline;">
-
-                                        @csrf
-
-                                        <input type="hidden"
-                                               name="status"
-                                               value="Selesai">
-
-                                        <button type="submit"
-                                                class="btn-aksi btn-validasi">
-                                            ✔ Validasi Resep
-                                        </button>
-
-                                    </form>
-
-                                @endif
-
-                                @if($item->status == 'Selesai')
-
-                                    <a href="{{ route('apoteker.resep.detail', $item->id) }}"
-                                       class="btn-aksi btn-cetak">
-                                        🖨 Cetak Salinan
-                                    </a>
-
-                                @endif
-
-                            </td>
-
-                        </tr>
-
-                    @empty
-
-                        <tr>
-                            <td colspan="10"
-                                style="padding:30px; color:#888; text-align:center;">
-                                Belum ada data resep yang masuk.
-                            </td>
-                        </tr>
-
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-
-      <div class="custom-pagination">
-    {{ $data->links('pagination::simple-bootstrap-5') }}
-</div>
+    {{-- ✅ MENGGUNAKAN CUSTOM PAGINATION DARI KODE 2 --}}
+    <div class="custom-pagination">
+        {{ $data->links('pagination::simple-bootstrap-5') }}
     </div>
 </div>
 @endsection
