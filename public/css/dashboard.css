@@ -378,12 +378,24 @@ body {
 
 .details .recentOrders {
     position: relative;
-    max-height: 500px;
-    overflow-y: auto;
     background: var(--white);
     padding: 25px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
+
+    height: auto;
+    max-height: none;
+    overflow: visible;
+}
+
+.main {
+    min-height: 100vh;
+    height: auto;
+}
+
+.details {
+    height: auto;
+    overflow: visible;
 }
 
 .details .cardHeader {

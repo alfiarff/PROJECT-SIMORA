@@ -16,12 +16,16 @@
         width: 100%;
     }
 
-    .profile-wrapper .recentOrders {
+        .profile-wrapper .recentOrders {
         background: #fff;
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         width: 100%;
+
+        height: auto !important;
+        min-height: 100% !important;
+        overflow: visible !important;
     }
     
     .profile-wrapper .cardHeader h2 {
@@ -50,10 +54,50 @@
     .profile-wrapper .form-group {
         margin-bottom: 20px;
     }
+
+    .details.profile-wrapper {
+    width: 100%;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    }
+
+    .profile-wrapper .recentOrders {
+        min-height: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .main {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .details {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .details.profile-wrapper {
+    display: block !important;
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+}
+
+.main {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+body {
+    overflow-y: auto !important;
+}
+
 </style>
 
-<div class="details profile-wrapper">
-    <div class="recentOrders">
+<div class="details profile-wrapper" style="padding-bottom:40px;">
+    <div class="recentOrders" style="padding-bottom:50px;">
         <div class="cardHeader">
             <h2>Pengaturan Profil Akun</h2>
         </div>
