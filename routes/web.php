@@ -28,12 +28,22 @@ Route::middleware(['auth', 'nocache', 'admin'])->prefix('admin')->group(function
 
 /*
 |--------------------------------------------------------------------------
+| LANDING PAGE
+|--------------------------------------------------------------------------
+*/
+Route::get('/', function () {
+    return view('landing');
+})->middleware('nocache');
+
+/*
+|--------------------------------------------------------------------------
 | LOGIN
 |--------------------------------------------------------------------------
 */
-Route::get('/', [LoginController::class, 'index'])
+Route::get('/login', [LoginController::class, 'index'])
     ->middleware('nocache')
     ->name('login');
+
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/register', [LoginController::class, 'register']);
 Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('reset.password');
@@ -43,7 +53,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/forgot-password', [LoginController::class, 'sendResetLink'])->name('forgot.send');
 Route::get('/reset-password/{token}', [LoginController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password/process', [LoginController::class, 'processReset'])->name('password.process');
-
 /*
 |--------------------------------------------------------------------------
 | DASHBOARD ROLE
