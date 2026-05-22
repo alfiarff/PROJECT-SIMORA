@@ -115,8 +115,7 @@
 
     <!-- Modal Logout Seragam -->
     <div id="logoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:#fff; border-radius:12px; padding:32px; width:360px; text-align:center; animation:fadeInUp 0.3s ease;">
-            <h3 style="margin:0 0 8px; color:#7f1d1d;">Konfirmasi Logout</h3>
+            <div style="background:#fff; border-radius:12px; padding:40px; width:500px; max-width:90vw; text-align:center; animation:fadeInUp 0.3s ease;">            <h3 style="margin:0 0 8px; color:#7f1d1d;">Konfirmasi Logout</h3>
             <p style="color:#555; margin-bottom:24px;">Apakah kamu yakin ingin keluar dari sistem?</p>
             <div style="display:flex; gap:12px; justify-content:center;">
                 <button onclick="closeLogoutModal()" type="button" style="padding:10px 24px; border-radius:8px; border:1px solid #ccc; background:#fff; cursor:pointer;">Batal</button>
