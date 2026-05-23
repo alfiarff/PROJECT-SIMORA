@@ -256,6 +256,19 @@
     0 10px 30px rgba(0,0,0,0.12);
 }
 
+/* =========================
+   TOGGLE BUTTON HOVER
+========================= */
+
+.toggle-panel button{
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.toggle-panel button:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
 </style>
 
 <script>
