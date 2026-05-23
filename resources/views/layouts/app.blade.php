@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/dashboard.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,66 +62,80 @@
 </head>
 <body>
 
-    @if(Auth::user()->role === 'admin')
-        @include('admin.sidebar')
-    @else
-        <div class="container-fluid">
-            <!-- Sidebar Dinamis (Akan diisi oleh masing-masing dashboard) -->
+    <div class="container-fluid">
+        <!-- Sidebar Dinamis (Akan diisi oleh masing-masing dashboard) -->
+        @if(Auth::check() && Auth::user()->role === 'admin')
+            @include('admin.sidebar')
+        @else
             @yield('sidebar')
-            
-            <div class="main">
-                <!-- Topbar -->
-                <div class="topbar">
-                    <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
+        @endif
+        
+        <div class="main">
+            <!-- Topbar -->
+            <div class="topbar">
+                <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
 
-                    @if(!View::hasSection('hide_search'))
-                    <form action="@yield('search_action', '#')" method="GET" class="search">
-                        <label>
-                            <input type="text" name="search" placeholder="@yield('search_placeholder', 'Cari data...')" value="{{ request('search') }}">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </label>
-                    </form>
-                    @endif
+                @if(!View::hasSection('hide_search'))
+                <form action="@yield('search_action', '#')" method="GET" class="search">
+                    <label>
+                        <input type="text" name="search" placeholder="@yield('search_placeholder', 'Cari data...')" value="{{ request('search') }}">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </form>
+                @endif
 
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <!-- Inject Notifikasi (Jika Ada) -->
-                        @stack('notif-bell')
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <!-- Inject Notifikasi (Jika Ada) -->
+                    @stack('notif-bell')
 
-                        <!-- User Profile -->
-                        <div class="user-profile">
-                            <div class="user-info">
-                                <span class="user-name">{{ Auth::user()->name ?? 'User' }}</span>
-                                <span class="user-role">{{ Auth::user()->role ?? 'Role' }}</span>
-                            </div>
-                            <div class="user-avatar">
-                                @if(Auth::check() && Auth::user()->foto)
-                                    <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto Profil">
-                                @else
-                                    {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 1)) }}
-                                @endif
-                            </div>
+                    <!-- User Profile -->
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name">{{ Auth::user()->name ?? 'User' }}</span>
+                            <span class="user-role">{{ Auth::user()->role ?? 'Role' }}</span>
+                        </div>
+                        <div class="user-avatar">
+                            @if(Auth::check() && Auth::user()->foto)
+                                <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto Profil">
+                            @else
+                                {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 1)) }}
+                            @endif
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Konten Utama -->
-                <div class="main-content">
-                    @yield('content')
-                </div>
+            <!-- Konten Utama -->
+            <div class="main-content">
+                @yield('content')
             </div>
         </div>
-    @endif
+    </div>
 
-    <!-- Modal Logout Seragam -->
+    {{-- ✅ Modal Konfirmasi Logout (Lebih Lebar & Font Lebih Kecil) --}}
     <div id="logoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
-            <div style="background:#fff; border-radius:12px; padding:40px; width:500px; max-width:90vw; text-align:center; animation:fadeInUp 0.3s ease;">            <h3 style="margin:0 0 8px; color:#7f1d1d;">Konfirmasi Logout</h3>
-            <p style="color:#555; margin-bottom:24px;">Apakah kamu yakin ingin keluar dari sistem?</p>
+        
+        <div style="background:#fff; border-radius:12px; padding:32px; width:500px; max-width:90%; text-align:center; animation:fadeInUp 0.3s ease;">
+            
+            <h3 style="margin:0 0 8px; color:#7f1d1d; font-size:25px;">Konfirmasi Logout</h3>
+            
+            <p style="color:#555; margin-bottom:24px; font-size:15px;">Apakah kamu yakin ingin keluar dari sistem?</p>
+            
             <div style="display:flex; gap:12px; justify-content:center;">
-                <button onclick="closeLogoutModal()" type="button" style="padding:10px 24px; border-radius:8px; border:1px solid #ccc; background:#fff; cursor:pointer;">Batal</button>
+                
+                <button onclick="closeLogoutModal()" type="button"
+                    style="padding:8px 24px; border-radius:8px; border:1px solid #ccc; background:#fff; cursor:pointer; font-size:15px; font-weight:500; transition:0.3s;">
+                    Batal
+                </button>
+                
                 <form method="POST" action="{{ route('logout') }}" style="margin:0;">
                     @csrf
-                    <button type="submit" style="padding:10px 24px; border-radius:8px; background:#7f1d1d; color:#fff; border:none; cursor:pointer;">Ya, Keluar</button>
+                    <button type="submit"
+                        style="padding:8px 24px; border-radius:8px; background:#7f1d1d; color:#fff; border:none; cursor:pointer; font-size:13px; font-weight:500; transition:0.3s;">
+                        Ya, Keluar
+                    </button>
                 </form>
+                
             </div>
         </div>
     </div>
