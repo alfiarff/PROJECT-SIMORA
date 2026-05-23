@@ -148,6 +148,17 @@ body {
                 <label style="font-weight: 600; margin-bottom: 8px; display: block; color: #444;">Email</label>
                 <input type="email" name="email" class="form-control" value="{{ old('email', Auth::user()->email) }}" required>
             </div>
+
+            <div class="form-group">
+                <label style="font-weight: 600; margin-bottom: 8px; display: block; color: #444;">
+                    Password Lama
+                </label>
+
+                <input type="password"
+                    name="current_password"
+                    class="form-control"
+                    placeholder="Masukkan password lama">
+            </div>
             
             <div class="form-group">
                 <label style="font-weight: 600; margin-bottom: 8px; display: block; color: #444;">Password Baru</label>

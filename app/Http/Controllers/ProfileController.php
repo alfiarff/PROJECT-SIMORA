@@ -43,7 +43,18 @@ class ProfileController extends Controller
 
         // Update password
         if ($request->filled('password')) {
+
+            // cek password lama wajib benar
+            if (!Hash::check($request->current_password, $user->password)) {
+
+                return redirect()->back()->withErrors([
+                    'current_password' => 'Password lama yang Anda masukkan salah.'
+                ])->withInput();
+
+            }
+
             $user->password = Hash::make($request->password);
+
             $messages[] = 'Password Anda berhasil diperbarui!';
         }
 
