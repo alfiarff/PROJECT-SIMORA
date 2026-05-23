@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SI-MORA — Sistem Informasi Monitoring dan Resep Obat</title>
+    <title>SI-MORA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
         .navbar-landing.scrolled .logo-text { color: var(--maroon) !important; }
 
         .logo-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo-img { height: 44px; width: auto; transition: all 0.4s; }
+        .logo-img { height: 90px; width: auto; transition: all 0.4s; }
         .logo-text { font-weight: 800; font-size: 1.5rem; color: var(--white); letter-spacing: -0.02em; transition: color 0.4s; }
 
         .nav-link {
@@ -185,17 +185,17 @@
         .flow-step:last-child { margin-bottom: 0; }
 
         .flow-number { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; flex-shrink: 0; position: relative; z-index: 2; }
-        .flow-number.step-1 { background: linear-gradient(135deg, #E3F2FD, #BBDEFB); color: #1565C0; box-shadow: 0 8px 25px rgba(21,101,192,0.15); }
-        .flow-number.step-2 { background: linear-gradient(135deg, var(--maroon), var(--maroon-light)); color: var(--white); box-shadow: 0 8px 25px rgba(117,22,45,0.2); }
-        .flow-number.step-3 { background: linear-gradient(135deg, var(--cream), var(--cream-light)); color: var(--maroon-dark); box-shadow: 0 8px 25px rgba(242,217,160,0.35); }
+        .flow-number.step-1 { background: linear-gradient(135deg, var(--maroon)); color: var(--cream-light); box-shadow: 0 8px 25px rgba(117,22,45,0.2); }
+        .flow-number.step-2 { background: linear-gradient(135deg, var(--cream), var(--maroon)); color: var(--white); box-shadow: 0 8px 25px  rgba(117,22,45,0.2); }
+        .flow-number.step-3 { background: linear-gradient(135deg, var(--cream)); color: var(--maroon); box-shadow: 0 8px 25px rgba(242,217,160,0.35); }
 
         .flow-content { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 28px 32px; flex: 1; transition: all 0.3s; }
         .flow-content:hover { box-shadow: 0 15px 40px rgba(117,22,45,0.08); border-color: rgba(117,22,45,0.1); }
 
         .flow-actor { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
-        .flow-actor.pmik { color: #1565C0; }
-        .flow-actor.dokter { color: var(--maroon); }
-        .flow-actor.apoteker { color: var(--maroon-dark); }
+        .flow-actor.pmik { color: var(--maroon); }
+        .flow-actor.dokter { color: var(--maroon) }
+        .flow-actor.apoteker { color: var(--maroon); }
         .flow-title { font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
         .flow-desc { font-size: 0.9rem; color: var(--gray-700); line-height: 1.65; font-weight: 300; }
         .flow-steps-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
@@ -281,8 +281,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 hero-content">
-                    <h1 class="hero-title">Pelayanan Resep Obat <span class="highlight">Terintegrasi</span> & Digital</h1>
-                    <p class="hero-desc">SI-MORA hadir sebagai sistem informasi yang terintegrasi antara PMIK, dokter, dan farmasi dalam satu sistem untuk pelayanan resep yang lebih cepat, tepat, dan efisien.</p>
+                    <h1 class="hero-title">Pelayanan Monitoring dan Resep Obat yang <span class="highlight">Digital & Terintegrasi</span></h1>
+                    <p class="hero-desc">SI-MORA  — Sistem Informasi Monitoring dan Resep Obat 
+                        <br> 
+                        Hadir sebagai sistem informasi yang terintegrasi antara PMIK, Dokter, dan Apoteker dalam satu sistem untuk pelayanan resep yang lebih cepat, tepat, dan efisien.</p>
                 </div>
             </div>
         </div>
@@ -293,8 +295,10 @@
                     <div class="stat-label">Aktor Terintegrasi</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" data-count="100">0</div>
-                    <div class="stat-label">% Digital</div>
+                    <div class="stat-number">
+                        <span class="counter" data-count="100">0</span>%
+                    </div>
+                    <div class="stat-label">Digital</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-count="1">0</div>
@@ -310,49 +314,49 @@
             <div class="text-center mb-5 animate-on-scroll">
                 <div class="section-tag"><i class="bi bi-grid-3x3-gap-fill"></i> Fitur Unggulan</div>
                 <h2 class="section-title">Dirancang untuk Pelayanan<br>Kesehatan yang Lebih Baik</h2>
-                <p class="section-desc mx-auto">Setiap fitur SI-MORA dibangun untuk menjawab tantangan nyata dalam pelayanan resep obat — dari pencatatan hingga penyelesaian.</p>
+                <p class="section-desc mx-auto">Setiap fitur SI-MORA dirancang untuk mendukung pelayanan resep obat secara efektif dan efisien mulai dari pendaftaran hingga penyelesaian penebusan obat.</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4 animate-on-scroll">
                     <div class="feature-card">
                         <div class="feature-icon maroon"><i class="bi bi-speedometer2"></i></div>
                         <h3 class="feature-title">Pelayanan Lebih Cepat</h3>
-                        <p class="feature-text">Eliminasi proses manual dan paper-based. Resep elektronik dikirim secara instan dari dokter ke farmasi tanpa delay.</p>
+                        <p class="feature-text">Resep dikirim langsung dari dokter ke apoteker untuk mempercepat proses pelayanan obat pasien.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 animate-on-scroll">
                     <div class="feature-card">
                         <div class="feature-icon cream"><i class="bi bi-shield-check"></i></div>
-                        <h3 class="feature-title">Resep Akurat</h3>
-                        <p class="feature-text">Validasi resep otomatis oleh apoteker mengurangi risiko kesalahan pencatatan dan pemberian obat yang tidak sesuai.</p>
+                        <h3 class="feature-title">Resep Lebih Tepat</h3>
+                        <p class="feature-text">Validasi resep membantu meminimalkan kesalahan pemberian obat agar pelayanan lebih akurat.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 animate-on-scroll">
                     <div class="feature-card">
                         <div class="feature-icon maroon"><i class="bi bi-activity"></i></div>
                         <h3 class="feature-title">Monitoring Real-time</h3>
-                        <p class="feature-text">Pantau status pelayanan obat dari diagnosa hingga obat diberikan kepada pasien secara real-time dalam satu dashboard.</p>
+                        <p class="feature-text">Status resep dapat dipantau langsung dalam satu sistem yang terintegrasi.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 animate-on-scroll">
                     <div class="feature-card">
                         <div class="feature-icon cream"><i class="bi bi-link-45deg"></i></div>
-                        <h3 class="feature-title">Integrasi Alur Kerja</h3>
-                        <p class="feature-text">PMIK, Dokter, dan Apoteker bekerja dalam satu sistem terhubung — tidak ada data yang terlewat atau terduplikasi.</p>
+                        <h3 class="feature-title">Sistem Terintegrasi</h3>
+                        <p class="feature-text">PMIK, Dokter, dan Apoteker bekerja dalam satu sistem yang terintegrasi.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 animate-on-scroll">
                     <div class="feature-card">
                         <div class="feature-icon maroon"><i class="bi bi-database-check"></i></div>
                         <h3 class="feature-title">Data Pasien Digital</h3>
-                        <p class="feature-text">Pengelolaan identitas dan riwayat pasien secara digital. Pencarian cepat, data lengkap, dan selalu terkini.</p>
+                        <p class="feature-text"> Data pasien dikelola secara digital untuk mempermudah pencarian dan pembaruan informasi pasien.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 animate-on-scroll">
                     <div class="feature-card">
                         <div class="feature-icon cream"><i class="bi bi-printer"></i></div>
                         <h3 class="feature-title">Cetak Resep Mudah</h3>
-                        <p class="feature-text">Resep yang sudah tervalidasi dapat dicetak langsung dari sistem — rapi, legal, dan siap diberikan kepada pasien.</p>
+                        <p class="feature-text">Resep tervalidasi dapat dicetak langsung melalui sistem dengan proses yang cepat dan praktis.</p>
                     </div>
                 </div>
             </div>
@@ -365,28 +369,28 @@
             <div class="text-center mb-5 animate-on-scroll">
                 <div class="section-tag"><i class="bi bi-people-fill"></i> Aktor Sistem</div>
                 <h2 class="section-title">Tiga Pilar Pelayanan<br>yang Terhubung</h2>
-                <p class="section-desc mx-auto">Setiap aktor memiliki peran khusus dalam alur pelayanan — semuanya terintegrasi dalam satu ekosistem SI-MORA.</p>
+                <p class="section-desc mx-auto">SI-MORA menghubungkan 3 aktor yang berperan penting untuk mendukung pelayanan resep obat yang lebih efektif dalam satu sistem yang terintegrasi.</p>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 animate-on-scroll">
                     <div class="actor-card">
                         <div class="actor-avatar pmik"><i class="bi bi-clipboard2-pulse"></i></div>
                         <h3 class="actor-name">PMIK</h3>
-                        <p class="actor-role">Pengelola Data Pasien</p>
+                        <p class="actor-role">Pengelolaan Data Pasien</p>
                     </div>
                 </div>
                 <div class="col-lg-4 animate-on-scroll">
                     <div class="actor-card">
                         <div class="actor-avatar dokter"><i class="bi bi-heart-pulse"></i></div>
                         <h3 class="actor-name">Dokter</h3>
-                        <p class="actor-role">Diagnosa & Resep Elektronik</p>
+                        <p class="actor-role">Pemeriksaan & Pembuatan Resep</p>
                     </div>
                 </div>
                 <div class="col-lg-4 animate-on-scroll">
                     <div class="actor-card">
                         <div class="actor-avatar apoteker"><i class="bi bi-capsule-pill"></i></div>
                         <h3 class="actor-name">Apoteker</h3>
-                        <p class="actor-role">Validasi & Pelayanan Obat</p>
+                        <p class="actor-role">Validasi Resep & Penyiapan Obat</p>
                     </div>
                 </div>
             </div>
@@ -398,8 +402,8 @@
         <div class="container">
             <div class="text-center mb-5 animate-on-scroll">
                 <div class="section-tag"><i class="bi bi-arrow-down-up"></i> Alur Kerja</div>
-                <h2 class="section-title">Dari Pendaftaran<br>hingga Obat Diberikan</h2>
-                <p class="section-desc mx-auto">Alur pelayanan yang jelas dan terintegrasi — setiap langkah terhubung secara otomatis dalam sistem.</p>
+                <h2 class="section-title">Dari Pendaftaran<br>Hingga Penebusan Obat</h2>
+                <p class="section-desc mx-auto">Alur pelayanan yang jelas dan terintegrasi membuat setiap proses dapat terhubung secara otomatis dalam sistem.</p>
             </div>
             <div class="flow-container">
                 <div class="flow-line"></div>
@@ -407,11 +411,11 @@
                     <div class="flow-number step-1">1</div>
                     <div class="flow-content">
                         <div class="flow-actor pmik">PMIK — Pendaftaran</div>
-                        <h3 class="flow-title">Input & Perbarui Data Pasien</h3>
-                        <p class="flow-desc">PMIK mendaftarkan pasien baru atau memperbarui data pasien yang sudah terdaftar. Data tersimpan secara digital dan siap diakses oleh dokter.</p>
+                        <h3 class="flow-title">Pengelolaan Data Pasien</h3>
+                        <p class="flow-desc">PMIK mendaftarkan pasien baru atau memperbarui data pasien yang sudah terdaftar. Data tersimpan secara digital dan siap diakses oleh dokter untuk dilakukan pemeriksaan dan peresepan obat.</p>
                         <div class="flow-steps-list">
                             <span class="flow-step-tag">Registrasi</span>
-                            <span class="flow-step-tag">Verifikasi Data</span>
+                            <span class="flow-step-tag">Administrasi</span>
                             <span class="flow-step-tag">Rekam Medis</span>
                         </div>
                     </div>
@@ -420,13 +424,12 @@
                     <div class="flow-number step-2">2</div>
                     <div class="flow-content">
                         <div class="flow-actor dokter">Dokter — Pemeriksaan</div>
-                        <h3 class="flow-title">Diagnosa & Resep Elektronik</h3>
-                        <p class="flow-desc">Dokter memeriksa pasien, menginput hasil diagnosa, dan membuat resep obat elektronik. Resep otomatis dikirim ke bagian farmasi tanpa perlu media fisik.</p>
+                        <h3 class="flow-title">Pemeriksaan & Pembuatan Resep</h3>
+                        <p class="flow-desc">Dokter memeriksa pasien, menginput hasil diagnosa, dan membuat resep obat elektronik. Resep tersimpan secara digital dan sudah terintegrasi langsung ke bagian farmasi tanpa perlu media fisik.</p>
                         <div class="flow-steps-list">
                             <span class="flow-step-tag">Pemeriksaan</span>
                             <span class="flow-step-tag">Diagnosa</span>
                             <span class="flow-step-tag">E-Resep</span>
-                            <span class="flow-step-tag">Kirim ke Farmasi</span>
                         </div>
                     </div>
                 </div>
@@ -434,14 +437,14 @@
                     <div class="flow-number step-3">3</div>
                     <div class="flow-content">
                         <div class="flow-actor apoteker">Apoteker — Pelayanan Obat</div>
-                        <h3 class="flow-title">Validasi, Siapkan & Berikan Obat</h3>
-                        <p class="flow-desc">Apoteker menerima resep dari dokter, melakukan validasi, mengecek ketersediaan stok, menyiapkan obat, dan menyelesaikan pelayanan. Resep dapat dicetak sebagai bukti.</p>
+                        <h3 class="flow-title">Validasi Resep & Penyiapan Obat</h3>
+                        <p class="flow-desc">Apoteker menerima resep dari dokter, melakukan validasi, mengecek ketersediaan stok obat, mencetak resep, menyiapkan obat, dan menyelesaikan pelayanan dengan penebusan obat oleh pasien.</p>
                         <div class="flow-steps-list">
                             <span class="flow-step-tag">Terima Resep</span>
                             <span class="flow-step-tag">Validasi</span>
                             <span class="flow-step-tag">Cek Stok</span>
+                            <span class="flow-step-tag">Cetak Resep</span>
                             <span class="flow-step-tag">Siapkan Obat</span>
-                            <span class="flow-step-tag">Selesai</span>
                         </div>
                     </div>
                 </div>
@@ -454,7 +457,7 @@
         <div class="container">
             <div class="cta-card animate-on-scroll">
                 <h2 class="cta-title">Siap Memulai Pelayanan Digital?</h2>
-                <p class="cta-desc">Bergabung dengan SI-MORA dan rasakan kemudahan pelayanan resep obat yang terintegrasi, cepat, dan akurat.</p>
+                <p class="cta-desc">Bergabung dengan SI-MORA untuk menghadirkan pelayanan resep obat yang lebih cepat, terintegrasi, dan efisien.</p>
                 <a href="{{ route('login') }}" class="btn-cta">Masuk ke SI-MORA <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -463,7 +466,7 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-copyright">&copy; 2026 Sistem Informasi Monitoring dan Resep Obat (SI-MORA)</p>
+            <p class="footer-copyright">&copy; 2026 Sistem Informasi Monitoring dan Resep Obat — SI-MORA</p>
         </div>
     </footer>
 
